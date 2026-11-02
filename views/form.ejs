@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title><%= alat ? 'Edit Alat Seni' : 'Tambah Alat Seni Baru' %></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header-content">
+            <h1><%= alat ? '✨ Edit Data Alat' : '🎨 Tambah Alat Seni Baru' %></h1>
+            <p>Silakan isi formulir di bawah ini dengan benar.</p>
+        </header>
+
+        <form action="<%= alat ? `/alat/update/${alat.id}` : '/alat' %>" method="POST" class="art-form">
+            <div class="form-group">
+                <label>Nama Alat:</label>
+                <input type="text" name="nama_alat" value="<%= alat ? alat.nama_alat : '' %>" placeholder="Contoh: Kanvas Lukis 30x40" required>
+            </div>
+            <div class="form-group">
+                <label>Jenis:</label>
+                <input type="text" name="jenis" value="<%= alat ? alat.jenis : '' %>" placeholder="Contoh: Melukis / Sketsa" required>
+            </div>
+            <div class="form-group">
+                <label>Jumlah Unit:</label>
+                <input type="number" name="jumlah_unit" value="<%= alat ? alat.jumlah_unit : '' %>" placeholder="Contoh: 10" required>
+            </div>
+            <div class="form-group">
+                <label>Lokasi Penyimpanan:</label>
+                <input type="text" name="lokasi_penyimpanan" value="<%= alat ? alat.lokasi_penyimpanan : '' %>" placeholder="Contoh: Rak Studio A1" required>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary"><%= alat ? 'Simpan Perubahan' : 'Simpan Data' %></button>
+                <a href="/" class="btn btn-secondary">Batal</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

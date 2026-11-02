@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>ArtCraft Studio - Manajemen Inventaris</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header-content">
+            <h1>🎨 ArtCraft Studio Inventory</h1>
+            <p>Kelola inventaris alat seni dan kreatif dengan mudah.</p>
+        </header>
+        
+        <div class="actions">
+            <a href="/tambah" class="btn btn-primary">+ Tambah Alat Baru</a>
+            <form action="/" method="GET" class="search-form">
+                <input type="text" name="search" placeholder="Cari nama alat..." value="<%= search %>">
+                <button type="submit" class="btn btn-search">Cari</button>
+            </form>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Alat</th>
+                    <th>Jenis</th>
+                    <th>Jumlah Unit</th>
+                    <th>Lokasi Penyimpanan</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (alatList.length > 0) { %>
+                    <% alatList.forEach((item, index) => { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><strong><%= item.nama_alat %></strong></td>
+                            <td><span class="badge"><%= item.jenis %></span></td>
+                            <td><%= item.jumlah_unit %> Unit</td>
+                            <td><%= item.lokasi_penyimpanan %></td>
+                            <td>
+                                <a href="/edit/<%= item.id %>" class="btn btn-warning">Edit</a>
+                                <form action="/alat/<%= item.id %>?_method=DELETE" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus alat ini?')">
+                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="6" style="text-align: center; color: #888;">Belum ada data alat seni.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
